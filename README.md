@@ -4,7 +4,7 @@ This is a mod for Game Dev Tycoon that adds a in-game global chat.
 
 ##Installation
 
-1) Unpack the .zip into your [GameDevTycoon folder]/mods.
+1) Unpack the ChatMod folder contained in the .zip into your [GameDevTycoon folder]/mods.
 
 2) Start the game
 
@@ -14,10 +14,10 @@ This is a mod for Game Dev Tycoon that adds a in-game global chat.
 
 5) Enjoy :)
 
-##Credits
-
-zeratul
+##Contacts
 
 fabfor
+
+Zeratul
 
 contact us at gdtchatmod@gmail.com for questions, suggestions or feedback
