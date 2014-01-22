@@ -20,7 +20,7 @@ var Chatclient = {};
     	
     	myNickname = name;
     	myName = true;
-    	console.log('Name changed into ' + myNickname);
+    	//console.log('Name changed into ' + myNickname);
     	
     };
     
@@ -31,8 +31,8 @@ var Chatclient = {};
         content = $('#contentmodchat');
         input = $('#input');
 
-        // if user is running mozilla then use it's built-in WebSocket
-        window.WebSocket = window.WebSocket || window.MozWebSocket;
+        // get chromium websocket
+        window.WebSocket = window.WebSocket;
 
         // if browser doesn't support WebSocket, just show some notification and exit
         if (!window.WebSocket) {
@@ -47,13 +47,14 @@ var Chatclient = {};
         var connection = new WebSocket('ws://54.194.3.0:1337');
 
         connection.onopen = function () {
-        	// first we want users to enter their names
+
         	input.removeAttr('disabled');
-        	//status.text('Player Name');
+
         	var json = JSON.stringify({type: 'handshake', data: myNickname});
         	connection.send(json);
         	$(this).val(''); //clear input box to be sure
-        	console.log('Chat Connected to ws://54.194.3.0:1337');
+        	//console.log('Chat Connected to ws://54.194.3.0:1337');
+            addGenericMessage("Connected!", new Date(),'green');
         };
 
         connection.onerror = function (error) {
@@ -64,21 +65,17 @@ var Chatclient = {};
 
         // most important part - incoming messages
         connection.onmessage = function (message) {
-        	// try to parse JSON message. Because we know that the server always returns
-        	// JSON this should work without any problem but we should make sure that
-        	// the massage is not chunked or otherwise damaged.
+
         	try {
         		var json = JSON.parse(message.data);
         	} catch (e) {
-        		console.log('This doesn\'t look like a valid JSON: ', message.data);
+        		//console.log('This doesn\'t look like a valid JSON: ', message.data);
         		return;
         	}
 
-        	// NOTE: if you're not sure about the JSON structure
-        	// check the server source code above
         	if (json.type === 'color') { // first response from the server with user's color
         		myColor = json.data;
-        		//status.text(myName + ': ').css('color', myColor);
+        		
         		input.removeAttr('disabled').focus();
         		// from now user can start sending messages
         	} else if (json.type === 'history') { // entire message history
@@ -92,7 +89,7 @@ var Chatclient = {};
         		addMessage(json.data.author, json.data.text,
         				json.data.color, new Date(json.data.time));
         	} else {
-        		console.log('wrong JSON received: ', json);
+        		//console.log('wrong JSON received: ', json);
         	}
         };
 
@@ -119,11 +116,6 @@ var Chatclient = {};
         	}
         });
 
-        /**
-         * This method is optional. If the server wasn't able to respond to the
-         * in 3 seconds then show some error message to notify the user that
-         * something is wrong.
-         */
         setInterval(function() {
         	if (connection.readyState !== 1) {
         		//status.text('Error');
@@ -142,6 +134,20 @@ var Chatclient = {};
         			+ message + '</p>');
         	Totalmessages += 1;
         	content.scrollTop(20 * Totalmessages);
+        }
+
+        /**
+         * Add generic message without formatting (used for system notifications)
+         * color: optional
+         */
+        function addGenericMessage(message, dt, color) {
+        color || (color = 'black');
+        content.append('<p style="margin: 0px; margin-top: 1px; color:' + color + '">[' + (dt.getHours() < 10 ? '0' + dt.getHours() : dt.getHours()) + ':'
+        + (dt.getMinutes() < 10 ? '0' + dt.getMinutes() : dt.getMinutes())
+        + '] ' + ': '
+        + message + '</p>');
+        Totalmessages += 1;
+        content.scrollTop(20 * Totalmessages);
         }
 
 
