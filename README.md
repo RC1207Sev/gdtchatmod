@@ -17,6 +17,7 @@ This is a mod for Game Dev Tycoon that adds a in-game global chat.
 ##Credits
 
 zeratul
+
 fabfor
 
 contact us at gdtchatmod@gmail.com for questions, suggestions or feedback
