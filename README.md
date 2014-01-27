@@ -14,6 +14,10 @@ This is a mod for Game Dev Tycoon that adds a in-game global chat.
 
 5) Enjoy :)
 
+## Changelog
+
+The chat box is now draggable
+
 ##Contacts
 
 fabfor

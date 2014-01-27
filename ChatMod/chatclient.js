@@ -186,6 +186,7 @@ var Chatclient = {};
         	if (2 != statusBarSize){
         		$('#statusBarCustomized').css("width", largeSizes.width + "%").css("height",largeSizes.height + "px");
         		$('#contentmodchat').css("height",(largeSizes.height - 70) + "px");
+				$('#chat').show();
         		statusBarSize = 2;
         	}else{  // else it will return in the default state
         		$('#statusBarCustomized').css("width",normalSizes.width + "%").css("height",normalSizes.height + "px");

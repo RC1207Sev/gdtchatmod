@@ -34,7 +34,7 @@
 					//Saves the Nickname
 					Nickname = company.staff[0].name;
 					
-					// Loads the new Chat panel into the main html
+					// Loads the new Chat panel into the main html (id: BarLeft)
 					$('#barLeft').load("mods/ChatMod/html/statusBarLeft.html", function () { AddName(); });
 					
 					return new Notification("ADD_CHAT_NOTIFICATION", "");
@@ -49,6 +49,7 @@
 		
 		Chatclient.changeName(Nickname);
 		Chatclient.init();
+		$('#statusBarCustomized').draggable();
 
 	};
 	
