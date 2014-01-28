@@ -133,7 +133,7 @@ var Chatclient = {};
         			+ '] ' + '<span style="color:' + color + '">' + author + '</span>: '
         			+ message + '</p>');
         	Totalmessages += 1;
-        	content.scrollTop(20 * Totalmessages);
+        	content.scrollTop(10000000);
         }
 
         /**
@@ -147,7 +147,7 @@ var Chatclient = {};
         + '] ' + ': '
         + message + '</p>');
         Totalmessages += 1;
-        content.scrollTop(20 * Totalmessages);
+        content.scrollTop(10000000);
         }
 
 
@@ -193,7 +193,7 @@ var Chatclient = {};
         		$('#contentmodchat').css("height",(normalSizes.height - 70) + "px");
         		statusBarSize = 1;
         	}
-        	content.scrollTop(20 * Totalmessages);
+        	content.scrollTop(10000000);
 
         });
 
@@ -213,7 +213,7 @@ var Chatclient = {};
         		$('#statusBarCustomized').css("width",normalSizes.width + "%").css("height",normalSizes.height + "px");
         		statusBarSize = 1;
         	}
-        	content.scrollTop(20 * Totalmessages);
+        	content.scrollTop(10000000);
 
         });
 

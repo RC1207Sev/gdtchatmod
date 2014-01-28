@@ -35,7 +35,7 @@
 					Nickname = company.staff[0].name;
 					
 					// Loads the new Chat panel into the main html (id: BarLeft)
-					$('#barLeft').load("mods/ChatMod/html/statusBarLeft.html", function () { AddName(); });
+					$('#barLeft').append($('<div>').load("mods/ChatMod/html/statusBarLeft.html", function () { AddName(); }));
 					
 					return new Notification("ADD_CHAT_NOTIFICATION", "");
 				}
