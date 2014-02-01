@@ -16,7 +16,9 @@ This is a mod for Game Dev Tycoon that adds a in-game global chat.
 
 ## Changelog
 
-The chat box is now draggable
+- The Chat Box will now handle system_message
+- Will now handle MOTD, Join/Part and online users counter
+- Fixed: double initialization on "New Game"
 
 ##Contacts
 
