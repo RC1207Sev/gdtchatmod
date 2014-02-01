@@ -25,6 +25,10 @@
     height:100%;
 }
 
+#undraggable {
+
+}
+
 
 </style>
 
@@ -34,13 +38,20 @@
   
 
 <div id="statusBarCustomized" class="statusBar statusBarRight staffItemBorder ui-draggable ui-widget-content" style="pointer-events: all; height: 270px; background-color: rgba(255, 255, 255, 0.498);">
-<div style="text-align: right;">			
-<input id="b_minimize" alt="close" src="./mods/ChatMod/html/img/minimize.png" style="width: 25px; height: 25px; "  type="image"/>
-<input id="b_maximize" alt="close" src="./mods/ChatMod/html/img/maxwindow.png" style="width: 25px; height: 25px;" type="image">
-<input id="b_close" alt="close" src="./mods/ChatMod/html/img/close.png" style="width: 25px; height: 25px; " type="image">
-</div>
-	<div id="chat">
-		<div id="contentmodchat" style="font-size: 12px; height: 200px"><p>Connecting...</p></div>
+<table border="0" cellpadding="0" cellspacing="0" style="text-align: right; background-color: rgba(255, 255, 255, 0.498039); width: 100%;">
+				<tbody>
+					<tr>
+						<td style="text-align: left; font-size: 12px;">
+							<strong id="chatBoxTitle">ChatMod</strong></td>
+						<td>
+							<input alt="close" id="b_minimize" src="./mods/ChatMod/html/img/minimize.png" style="width: 25px; height: 25px; " type="image" />
+							<input alt="close" id="b_maximize" src="./mods/ChatMod/html/img/maxwindow.png" style="width: 25px; height: 25px;" type="image" />
+							<input alt="close" id="b_close" src="./mods/ChatMod/html/img/close.png" style="width: 25px; height: 25px; " type="image" /></td>
+					</tr>
+				</tbody>
+			</table>
+	<div id="chat" >
+		<div id="contentmodchat" class="undraggable" style="font-size: 12px; height: 200px"><p>Connecting...</p></div>
     	<input type="text" id="input" disabled="disabled" style="width:100% ; " onclick="this.focus()"/>
 	</div>
 </div>

@@ -34,8 +34,12 @@
 					//Saves the Nickname
 					Nickname = company.staff[0].name;
 					
+					// Check if the panel already exists: if not, create it
+					console.log($('#ChatModPanel').length);
+					$('#ChatModPanel').length || $('#barLeft').append($('<div id="ChatModPanel">').load("mods/ChatMod/html/statusBarLeft.html", function () { AddName(); }));
+					
 					// Loads the new Chat panel into the main html (id: BarLeft)
-					$('#barLeft').append($('<div>').load("mods/ChatMod/html/statusBarLeft.html", function () { AddName(); }));
+
 					
 					return new Notification("ADD_CHAT_NOTIFICATION", "");
 				}
@@ -47,9 +51,9 @@
 	// Call back after load: initializes the chatclient.js
 	var AddName = function () {
 		
-		Chatclient.changeName(Nickname);
-		Chatclient.init();
-		$('#statusBarCustomized').draggable();
+		// Checks if the name is usable and init the client
+		Chatclient.changeName(Nickname) && Chatclient.init();
+		$('#statusBarCustomized').draggable({ cancel: "p" });
 
 	};
 	

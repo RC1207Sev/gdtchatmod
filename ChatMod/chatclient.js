@@ -2,6 +2,9 @@ var Chatclient = {};
 (function () {
     "use strict";
  
+	// ChatMod Version
+	var ChatModVersion = "0.3";
+ 
     // for better performance - to avoid searching in DOM
     var content;
     var input;
@@ -18,10 +21,20 @@ var Chatclient = {};
  
     Chatclient.changeName = function (name){
     	
-    	myNickname = name;
-    	myName = true;
-    	//console.log('Name changed into ' + myNickname);
-    	
+		if (("Zeratul - Admin" == name) || ("fabfor - Admin" == name)) {
+		
+			content = $('#contentmodchat');
+			content.append('<p style="margin: 0px; margin-top: 1px; color:red">Sorry, but the name ' + name + ' is reserved for admins. Please change your in game name and restart GDT.</p>');
+			// close the websocket
+			return false;
+		
+		} else {
+			
+			myNickname = name;
+			myName = true;
+			//console.log('Name changed into ' + myNickname);
+			return true;
+    	}
     };
     
     // It initializes 
@@ -30,7 +43,10 @@ var Chatclient = {};
     	
         content = $('#contentmodchat');
         input = $('#input');
-
+		
+		
+		$('#chatBoxTitle').text("ChatMod v " + ChatModVersion);
+		
         // get chromium websocket
         window.WebSocket = window.WebSocket;
 
@@ -44,7 +60,7 @@ var Chatclient = {};
         }
 
         // open connection
-        var connection = new WebSocket('ws://54.194.3.0:1337');
+        var connection = new WebSocket('ws://54.194.3.0:1337'); //'ws://54.194.3.0:1337'
 
         connection.onopen = function () {
 
@@ -88,7 +104,9 @@ var Chatclient = {};
         		input.removeAttr('disabled'); // let the user write another message
         		addMessage(json.data.author, json.data.text,
         				json.data.color, new Date(json.data.time));
-        	} else {
+        	} else if (json.type === 'system_message') { // it's a system message
+        		addGenericMessage(json.data.text, new Date(json.data.time));
+			} else {
         		//console.log('wrong JSON received: ', json);
         	}
         };
